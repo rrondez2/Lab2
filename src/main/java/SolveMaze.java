@@ -34,13 +34,31 @@ public class SolveMaze {
          * Feel free to adjust this number if you experiment with other mazes.
          */
         for (int step = 0; step < 1000; step++) {
-            // Implement your maze solving algorithm here
-        }
 
-        if (maze.isFinished()) {
-            System.out.println("You solved the maze!");
-        } else {
-            System.out.println("Try again!");
+            if (maze.isFinished() == false) {
+                if (maze.canMove() == false) {
+                    maze.turnRight();
+
+                    if (maze.canMove() == false) {
+                        maze.turnLeft();
+                        maze.turnLeft();
+
+                        if (maze.canMove() == false) {
+                            maze.turnLeft();
+                        }
+                    }
+                } else {
+                    maze.move();
+                }
+
+
+            }
+
+            if (maze.isFinished()) {
+                System.out.println("You solved the maze!");
+            } else {
+                System.out.println("Try again!");
+            }
         }
     }
 }
